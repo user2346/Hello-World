@@ -1,0 +1,63 @@
+#!/usr/bin/perl -w
+
+my @all_possible_words= qw(
+this
+yellow
+testing
+);
+
+my $rand = int(rand($#all_possible_words+1));
+my $word_to_guess = $all_possible_words[$rand];
+
+my $guessed_word;
+my $i = 0;
+for ($i = 0; $i < length($word_to_guess); $i++) {
+	$guessed_word = "$guessed_word _";
+}
+$guessed_word = substr $guessed_word, 1; #Remove leading space
+
+my @guessed_letters;
+my $lives = 7;
+
+print "$word_to_guess\n";
+print "Welcome to hangman.\n";
+print "$guessed_word\n";
+
+
+while ($guessed_word =~ m/_/) { #Keeps going if there is a '_', meaning there is a letter to be gueesed
+	print "Guess a letter: ";
+	my $letter = <STDIN>;
+	chomp($letter);
+	$letter = lc($letter); #All lowercase
+	$letter = substr $letter, 0, 1; #Take only first character
+	if ($letter !~ m/[a-z]/) {
+		print "Please enter a valid letter.\n";
+		next;
+	} elsif (grep $_ eq $letter, @guessed_letters) {
+		print "Letter already guessed!\n";
+		next;
+	} else {
+		push(@guessed_letters, $letter);
+	}
+	
+	my @wrong_letters = @guessed_letters;
+	
+	my $i = 0;
+	$guessed_word = "";
+	for ($i = 0; $i < length($word_to_guess); $i++) {
+		my $char = "_";
+		my $current_letter = substr $word_to_guess, $i, 1;
+		
+		if (grep $_ eq $current_letter, @guessed_letters) {
+			$char = $current_letter;
+			my ($index) = grep $wrong_letters[$_] eq $current_letter, 0..$#wrong_letters; #Removes correct 
+			splice @wrong_letters, $index, 1 if defined($index); 				 #letter from @wrog_letters
+		}
+		$guessed_word = "$guessed_word $char";
+	}
+	$guessed_word = substr $guessed_word, 1; #Remove leading space
+	print "$guessed_word\n";
+	print "Wrong Letters: @wrong_letters\n";
+}
+
+print "CONGRATULATIONS! You Won!!!\n"

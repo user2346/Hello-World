@@ -1,0 +1,682 @@
+<html>
+<script>
+
+var possibleWords=new Array(
+'THERE',
+'RAINBOW',
+'FENCE',
+'ALUMINIUM',
+'DISTRIBUTION',
+'IGLOO',
+'UNDERTAKE',
+'CONTAINER',
+'PHONE',
+'ELECTROCUTES',
+'ACTUARY',
+'AGORAPHOBIA',
+'AMPLIFIER',
+'APPARENTLY',
+'AVALANCHE',
+'BANK',
+'BECAUSE',
+'BRIGHT',
+'BLOODSTREAM',
+'BOTCH',
+'BROADLOOM',
+'BURST',
+'CANNED',
+'CASTING',
+'CHANGE',
+'CHOKE',
+'CLEARING',
+'COIL',
+'COMMISSION',
+'CONCUR',
+'CONTAINMENT',
+'CORPORAL',
+'CRASH',
+'CRYING',
+'DARING',
+'DEGREE',
+'DEVELOPMENT',
+'DISCIPLINE',
+'DOCK',
+'DRANK',
+'DYSLEXIA',
+'ELEVATOR',
+'ENTRANCE',
+'EXAMINE',
+'EYEBALL',
+'EVIL',
+'FASTENER',
+'FILE',
+'FLATLY',
+'FOOTBRIDGE',
+'FRAMEWORK',
+'FULL',
+'GAUGE',
+'GLAMOROUS',
+'GOODBYE',
+'GRID',
+'GRAVEL',
+'HAIL',
+'HASSLE',
+'HELP',
+'HOLD',
+'HOUSE',
+'IDIOT',
+'INCLINE',
+'INITIALLY',
+'INTERCEDE',
+'ITALICS',
+'JUPITER',
+'JERSEY',
+'JUMPING',
+'KNOT',
+'KITE',
+'KNOCK',
+'KOOKABURRA',
+'LAUGH',
+'LEST',
+'LINESMAN',
+'LOOKING',
+'LEND',
+'MAID',
+'MARCH',
+'MEDICATION',
+'MINCE',
+'MODERN',
+'MOTHER',
+'NATIVE',
+'NEXT',
+'NUMB',
+'NEST',
+'NEEDLE',
+'OLDEN',
+'OTTER',
+'OVAL',
+'ONTO',
+'OFFENCE',
+'PAGE',
+'PATRIOTISM',
+'PENALIZE',
+'PHEASANT',
+'PINCERS',
+'PLENTY',
+'POPADUM',
+'PRECIPICE',
+'PREVIEW',
+'PROMPT',
+'PUMP',
+'QUESTIONS',
+'QUILT',
+'QUEEN',
+'RAPID',
+'RECRUIT',
+'REMEMBRANCE',
+'RESPONDENT',
+'RIGHTS',
+'ROUGH',
+'SABOTAGE',
+'SAYING',
+'SCYTHE',
+'SEMINAL',
+'SHAFT',
+'SHORT',
+'SIMPLE',
+'SLICK',
+'SOBER',
+'SPAGHETTI',
+'SPOT',
+'STAR',
+'STOCK',
+'STRONGARM',
+'SUMMONS',
+'SWINGEING',
+'TAKER',
+'TEMPORAL',
+'THEATRICAL',
+'TIDAL',
+'TOOTHACHE',
+'TRAPEZE',
+'TUFT',
+'UNCOUPLE',
+'UPBEAT',
+'UNDER',
+'UNEMPLOYMENT',
+'VERBALIZE',
+'VOWEL',
+'VENUS',
+'VOID',
+'VACUUM',
+'WATERS',
+'WHICHEVER',
+'WITCH',
+'WOUND',
+'WINDY',
+'XYLOPHONE',
+'XRAY',
+'YACHT',
+'YANK',
+'YEAR',
+'YESTERDAY',
+'YELP',
+'ZEBRA',
+'ZEAL',
+'ACKNOWLEDGE',
+'BLUBBER',
+'CANDIDATE',
+'CITIZEN',
+'CIVILIZATION',
+'COMPLICATED',
+'CREDITS',
+'DOCUMENTARY',
+'EMPOWER',
+'EXCEPTED',
+'FLIPPING',
+'GAZETTE',
+'GRIEVANCE',
+'HALVE',
+'HATCHET',
+'HIGHLIGHT',
+'HOMONYM',
+'ILLUSION',
+'INCONVENIENT',
+'INSIDER',
+'ISRAELITE',
+'JOYFUL',
+'LAMPPOST',
+'MAGNESIUM',
+'MARINE',
+'MISSIONARY',
+'MOULD',
+'NINETEEN',
+'PARTICULAR',
+'PERSPECTIVE',
+'PHYLUM',
+'PLATFORM',
+'PRANKSTER',
+'PRINCEDOM',
+'PROOF',
+'PROPORTION',
+'PUSHED',
+'RADIOLOGY',
+'REFORMATORY',
+'REVOLUTION',
+'ROUNDABOUT',
+'SATELLITE',
+'SEESAW',
+'SHADE',
+'SIGNAL',
+'SKULKING',
+'SLIDE',
+'SOLUBLE',
+'SQUANDER',
+'STEERING',
+'STIMULATING',
+'SUBSTITUTE',
+'SWEETENER',
+'TEASPOON',
+'TETHER',
+'THIRTEENTH',
+'TOMBSTONE',
+'TRICEPS',
+'UNDERCOVER',
+'UNTHINKABLE',
+'VALVE',
+'VAMPIRRE',
+'VERMIN',
+'WAKING',
+'WALK',
+'WEASEL',
+'WHATEVER',
+'WING',
+'WORKMANSHIP',
+'WRONG',
+'ZOOLOGIST',
+'YOURS',
+'YIELD',
+'TRANSFER',
+'STINKY',
+'SIEVE',
+'SAUNA',
+'REPULSIVE',
+'PILLOW',
+'OBJECTION',
+'MARLIN',
+'LIGHT',
+'JOURNEY',
+'INSECTICIDE',
+'HOWEVER',
+'HARVESTER',
+'GROWN',
+'DOLPHIN',
+'CACTUS',
+'OPTICAL',
+'OPTISM',
+'ORCHESTRA',
+'LOADED',
+'JAVASCRIPT',
+'HANGMAN',
+'LOCAL',
+'LOADING',
+'LAGER',
+'VODKA',
+'IMPERMANENT',
+'IMPERIAL',
+'IMPOSSIBLE',
+'IMPASSABLE',
+'HICCUP',
+'GROGGY',
+'GENERALITY',
+'DOMESTIC',
+'DISHEARTEN',
+'DISHERIT',
+'DISGUISE',
+'DEBRIEF',
+'DEBATABLE',
+'GRATITUDE',
+'GRAVELY',
+'HARDWARE',
+'SOFTWARE',
+'COMPUTERS',
+'HARVEST',
+'HONOURABLE',
+'HOODED',
+'MORPHINE',
+'MORTALITY',
+'CENTIPEDE',
+'OINTMENT',
+'OFFICIALLY',
+'PARALLEL',
+'PEER',
+'PELLET',
+'PEDIGREE',
+'PLANETERIUM',
+'PLUMMET',
+'PRECESSION',
+'RECESSION',
+'DEPRESSION',
+'PROPERTY',
+'PROPOGANDA',
+'QUADRUPLET',
+'SEMIQUAVER',
+'REFRACT'
+);
+//alert(possibleWords.length); // see how many words there are!!
+
+/*  for (i=0;i<possibleWords.length; i++) {
+    for (a=0;a<possibleWords.length; a++) {
+      if((possibleWords[i] == possibleWords[a])&&(i!=a)){
+	alert(possibleWords[i]);
+      }
+    }
+  }*/ //checks for words used twice
+
+function re_load() {
+  if ((Win==1) || (Lose==1)) {
+    window.location.reload();
+  } else {
+    alert('Finish this game first!');
+  }
+}
+
+function drawMan() {
+  for (i=0; i<11; i++) {
+    eval("if (wrongLetter == "+i+") {document.getElementById('Hangman').src='Hang/"+i+".jpeg';}");
+  }
+}
+
+function showWordOnOff() {//working!
+  if (showWord==1) {
+    showWord=0;
+    document.option.onoff.checked = false;
+  }
+  else if (showWord==0) {
+    showWord=1;
+    document.option.onoff.checked = true;
+  }
+}
+
+function checkIfWin() {
+  Wincommand = "";
+  Wincommand = "if (";
+  for (i=0; i<myWord.length-1; i++) {
+    Wincommand = Wincommand + "(rightLetters[" + i + "] == myWord[" + i + "]) && ";
+  }
+  Wincommand = Wincommand + "(rightLetters[" + [myWord.length-1] + "] == myWord[" + i + "])) { youWin(); }";
+  eval(Wincommand);
+}
+
+function youWin() {
+  if (Lose==0) {
+    document.getElementById('winlose').innerHTML="YOU WIN!!!";
+    Win=1;
+    games.wins.value++;
+  }
+}
+
+function youLose() {
+  if (Win==0) {
+    if (showWord==1) {
+      for (i=0; i<myWord.length; i++) {
+	eval("guessLetter(" + i + ");");
+      }
+    }
+    document.getElementById('winlose').innerHTML="YOU LOSE!!!";
+    if (Lose==0) {
+      Lose=1;
+      wrongLetter = 10;
+      drawMan();
+      games.loses.value++;
+    }
+  }
+}
+
+function letterIsWrong() {//working!!
+  command = "";
+  command = "if (";
+  for (i=0; i<9; i++) {
+    command = command + "!(wrongLetters[" + i + "] == '" + guess.guess.value.toUpperCase() + "') && ";
+  }
+  command = command + "!(wrongLetters[9] == '" + guess.guess.value.toUpperCase() + "')) { showWrongLetters(); }";
+  eval(command);
+}
+
+function showWrongLetters() {//working!!
+  command = "";
+  for (i=0; i<9; i++) {
+    command = command + "if (wrongLetter == "+i+") { document.getElementById('guess"+i+"').innerHTML='" +guess.guess.value.toUpperCase()+ "'; wrongLetter="+[i+1]+"; wrongLetters["+i+"] ='" +guess.guess.value.toUpperCase()+ "';} else ";
+  }
+  command = command + "if (wrongLetter == 9) { document.getElementById('guess"+i+"').innerHTML='" +guess.guess.value.toUpperCase()+ "'; wrongLetter=10; wrongLetters[9] ='" +guess.guess.value.toUpperCase()+ "'; youLose()}";
+  eval(command);
+}
+
+function checkLetters() {
+  var letters = validateLetters(guess.guess.value);
+  if ((Lose==0) && (Win==0) && (letters)) {
+    for (i=0; i<myWord.length; i++) {
+      eval("if (guess.guess.value.toUpperCase() == myWord[" + i + "]) { guessLetter(" + i + ");}");
+    }
+    checkIfWin();
+    command = "if (";
+    for (i=0; i<myWord.length-1; i++) {
+      command = command + "!(myWord[" + i + "] == '" + guess.guess.value.toUpperCase() + "') && ";
+    }
+    command = command + "!(myWord[" + [myWord.length-1] + "] == '" + guess.guess.value.toUpperCase() + "')) { letterIsWrong(); }";
+    eval(command);
+    drawMan();
+  }
+  guess.guess.value="";
+}
+
+function validateLetters(strValue) {
+  var objRegExp  = /^[a-z\u00C0-\u00ff]+$/;
+  return objRegExp.test(strValue);
+}
+
+
+var wrongLetter = 0;
+var Lose=0;
+var Win=0;
+var rightLetters=new Array();
+var showWord = 1;
+var wrongLetters=new Array();
+ind = parseInt(Math.random()*possibleWords.length);
+myWord = possibleWords[ind];
+stars = myWord;
+for (i=0; i< stars.length; i++) {
+  var letter = stars.charAt(i);
+  stars = stars.replace(letter,"_");
+}
+rightletters();
+document.guess.guess.focus;
+document.guess.theGuess.focus;
+
+function rightletters() {
+  for (i=0; i<myWord.length; i++) {
+    rightLetters[i] = "_";
+  }
+}
+
+function writeStars(){
+  for (i=0; i<stars.length; i++) {
+    eval("document.getElementById('letter" + i + "').innerHTML=stars.charAt(" + i + ");");
+  }
+}
+
+function guessLetter(num) {
+  eval("document.getElementById('letter" + num + "').innerHTML=myWord[" + num + "];");
+  eval("rightLetters[" + num + "]=myWord[" + num + "];"); 
+}
+
+</script>
+  <body>
+    <TITLE>Hangman!!</TITLE> 
+    <table>
+      <tr>
+	<td id="HangMan">
+	  <img id="Hangman" src="Hang/0.jpeg"/>
+	</td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+	<td id="letter0">
+	  &nbsp;
+	</td>
+	<td id="letter1">
+	  &nbsp;
+	</td>
+	<td id="letter2">
+	  &nbsp;
+	</td>
+	<td id="letter3">
+	  &nbsp;
+	</td>
+	<td id="letter4">
+	  &nbsp;
+	</td>
+	<td id="letter5">
+	  &nbsp;
+	</td>
+	<td id="letter6">
+	  &nbsp;
+	</td>
+	<td id="letter7">
+	  &nbsp;
+	</td>
+	<td id="letter8">
+	  &nbsp;
+	</td>
+	<td id="letter9">
+	  &nbsp;
+	</td>
+	<td id="letter10">
+	  &nbsp;
+	</td>
+	<td id="letter11">
+	  &nbsp;
+	</td>
+      </tr>
+    </table>
+    <p>Your Guess Is:
+     <form name=guess>
+      <input type="text" name="guess" maxlength="1" value="" style='width:20px;'>
+      <input name="theGuess" type="button" onclick="checkLetters();" value="Guess">
+    </form>
+    <table border ="0">
+      <tr>
+	<td>
+	  Wrong Letters:&nbsp;
+	</td>
+	<td id="guess0">
+	  &nbsp;
+	</td>
+	<td id="guess1">
+	  &nbsp;
+	</td>
+	<td id="guess2">
+	  &nbsp;
+	</td>
+	<td id="guess3">
+	  &nbsp;
+	</td>
+	<td id="guess4">
+	  &nbsp;
+	</td>
+	<td id="guess5">
+	  &nbsp;
+	</td>
+	<td id="guess6">
+	  &nbsp;
+	</td>
+	<td id="guess7">
+	  &nbsp;
+	</td>
+	<td id="guess8">
+	  &nbsp;
+	</td>
+	<td id="guess9">
+	  &nbsp;
+	</td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+	<td id="winlose">
+	  &nbsp;
+	</td>
+      </tr>
+    </table>
+    <br/>
+     <form name="option">
+      <input type="button" onclick="youLose();" value="Give Up">&nbsp;&nbsp;&nbsp;&nbsp; Show Answer On Loss:&nbsp;
+      <input type="checkbox" onclick="showWordOnOff();" name="onoff">
+    </form>
+     <form name="reload">
+      <input type="button" onclick="re_load()" value="New Game">
+    </form>
+    <br/>
+    <br/>
+     <form name="games">
+      Wins:&nbsp;<input type="text" name="wins" value="0" readonly="readonly">
+	<br/>
+      Loses:&nbsp;<input type="text" name="loses" value="0" readonly="readonly">
+	<br/>
+      <input type="button" onclick="games.wins.value=0; games.loses.value=0;" value="Reset">
+      <input type="button" onclick="startCreateCookie();" value="Save">
+	<br/>
+      <select name="Games">
+	<br/>
+	<option>--Games--</option>
+      </select>
+      <input type="button" onclick="startReadCookie();" value="Load">
+      <input type="button" onclick="startEraseCookie();" value="Delete">
+    </form>
+  </body>
+  <script>
+    document.option.onoff.checked = true;
+    writeStars();
+
+addToLoadgames();
+
+function startCreateCookie() {
+  var save=prompt("Save Game:","savegame1")
+  var check = save.search(":");
+  if (check==[-1]) {
+  if (save!=null && save!="") {
+    var days=prompt("Keep for how many days?","10");
+    if (parseInt(days) || days==0) {
+      var savedvalue = ReadCookie('savedgames');
+      var savedgames = savedvalue.split(':');
+      createCookie('savedgames',savedvalue + save + ':',days);
+      createCookie('gamewin' + save,games.wins.value,days);
+      createCookie('gameloss' + save,games.loses.value,days);
+      addToLoadgames();
+      alert('Saved ' + save);
+    } else {
+      alert('That is not a number!' + '\n' + '' + save + ' not saved');
+    }
+  } else {
+    alert('Please enter a name!');
+  }
+  } else {
+    alert("Do not use ':' in the name!");
+  }
+}
+
+function startReadCookie() {
+  var loads = games.Games.value
+  games.wins.value = ReadCookie('gamewin' + loads,loads);
+  games.loses.value = ReadCookie('gameloss' + loads,loads);
+}
+
+function startEraseCookie() {
+  var cnfrm = confirm("Do you really want to delete this game?");
+  if (cnfrm == true) {
+    var delet = games.Games.value
+    if (delet!=null && delet!="") {
+      var savedvalue = ReadCookie('savedgames');
+      var savedgame = replaceAll(savedvalue,games.Games.value + ":","");
+      createCookie('savedgames',savedgame,999999);
+      eraseCookie('gamewin' + delet);
+      eraseCookie('gameloss' + delet);
+      addToLoadgames();
+      alert('Deleted ' + delet);
+    }
+  }
+}
+
+function createCookie(name,value,days) {
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime()+(days*24*60*60*1000));
+      var expires = "; expires="+date.toGMTString();
+    }
+  else var expires = "";
+  document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function eraseCookie(name) {
+	createCookie(name,"",-1);
+}
+
+function ReadCookie(cookieName) {
+  var theCookie=""+document.cookie;
+  var ind=theCookie.indexOf(cookieName);
+  if (ind==-1 || cookieName=="") return ""; 
+  var ind1=theCookie.indexOf(';',ind);
+  if (ind1==-1) ind1=theCookie.length; 
+  return unescape(theCookie.substring(ind+cookieName.length+1,ind1));
+}
+
+function addToLoadgames(){
+  var savedvalue = ReadCookie('savedgames');
+  var savedgames = savedvalue.split(':');
+  var removeone = savedgames.splice(savedgames.length-1,1);
+  for (i=0;i<savedgames.length; i++) {
+    for (a=0;a<savedgames.length; a++) {
+      if((savedgames[i] == savedgames[a])&&(i!=a)){
+	var removetwo = savedgames.splice(a,1);
+      }
+    }
+  }
+  document.games.Games.options.length = 0;
+  document.games.Games[0] = new Option('--Games--');
+  for (var i=0; i <savedgames.length;++i){
+    document.games.Games.options[i+1] = new Option(savedgames[i], savedgames[i]);
+  }
+}
+
+function replaceAll(text, strA, strB) {
+    while ( text.indexOf(strA) != -1)
+    {
+        text = text.replace(strA,strB);
+    }
+    return text;
+}
+
+</script>
+  </script>
+</html>
